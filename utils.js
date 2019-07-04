@@ -15,13 +15,25 @@ exports.populate_database = (jsonFile) => {
     });
 };
 
+exports.words_in_sentence = (word_list, sentence) => {
+    // return true if any of the words in word_list is in the sentence
+    word_list.forEach(word => {
+        if(sentence.includes(word)){
+            return true;
+        }
+    });
+    return false;
+};
 
-// const game = new Game(req.query);
-// game.save().then(game => {
-//     res.status(200).json(game);
-// }).catch(err =>{
-//     res.status(400).json({
-//         "Error msg": `Could not create model instance. Bad query: ${JSON.stringify(req.query)}`,
-//         "err": err
-//     });
-// });
+exports.id_in_list = (id, list) => {
+  // returns true if an object with that id is already in the list
+    //console.log(`id: ${id}`);
+    list.forEach(list_item => {
+      //console.log(`list_item._id: ${list_item._id}`);
+      if(list_item._id === id) {
+          return true;
+      }
+  });
+  return false;
+};
+

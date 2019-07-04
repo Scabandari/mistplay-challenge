@@ -32,4 +32,8 @@ const gameSchema = new Schema({
     }
 });
 
+gameSchema.query.titleKeywords = function (keywords) {
+
+};
+
 module.exports = mongoose.model('Game', gameSchema);

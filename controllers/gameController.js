@@ -27,9 +27,11 @@ exports.game_list = (req, res) => {
 exports.game_detail = (req, res) => {
     const { gameId } = req.params;
     Game.findById(gameId).then(game => {
-        res.status(200).json(game);
+        if(game) {
+            res.status(200).json(game);
+        }
     }).catch(err => {
-        res.status(406).json({
+        res.status(404).json({
             "Error msg": `No game found with id: ${gameId}`,
             "err": err
         });
@@ -47,10 +49,7 @@ exports.game_search = async (req, res) => {
         keywords.forEach(keyword => {
             const lowercase_title = game.title.toLowerCase();
             if(lowercase_title.includes(keyword)) {
-               //search_results.push(game);  // TODO naive and doesnt check if it's already in list
-               if(!utils.id_in_list(game._id, search_results)){
-                   search_results.push(game);
-               }
+                search_results.push(game);
            }
         });
     });

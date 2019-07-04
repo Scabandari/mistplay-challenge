@@ -4,7 +4,7 @@ const game_controller = require('../controllers/gameController');
 
 router.post('/create', game_controller.game_create);
 router.get('/list', game_controller.game_list);
-router.get('/detail', game_controller.game_detail);
+router.get('/:gameId/detail', game_controller.game_detail);
 router.get('/search', game_controller.game_search);
 
 module.exports = router;
